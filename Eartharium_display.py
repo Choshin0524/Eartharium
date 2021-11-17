@@ -11,25 +11,23 @@ import datetime
 weather_list = []
 time_now = ""
 
-
-
 def get_weather_list():
     global weather_list
     weather_list = get_weather.get_weather_info() #weather_list[0]:high temp [1]:low temp [2]:weather
 
 def get_time():
     global time_now
-    time_now = datetime.datetime.now().strftime("%H:%M")   
+    time_now = datetime.datetime.now().strftime("%H:%M:%S")   
 
 def show_time():
     lcd.setCursor(0,0)
     lcd.message(time_now)
 
 def show_weather():
-    lcd.setCursor(8,0)
+    lcd.setCursor(9,0)
     lcd.message(weather_list[2])
     lcd.setCursor(0,1)
-    lcd.message("Low:"+str(weather_list[0])+"℃ High:"+str(weather_list[1])+"℃")
+    lcd.message("High:"+str(weather_list[0])+"  Low:"+str(weather_list[1]))
 
 def destroy():
     lcd.clear()
@@ -47,7 +45,12 @@ if __name__ == "__main__":
     lcd.message("Earthrium")
     time.sleep(2)
     lcd.clear()
+    lcd.setCursor(3,0)
+    lcd.message("Getting")
+    lcd.setCursor(3,1)
+    lcd.message("Weather")
     get_weather_list()
+    lcd.clear()
 
 #定時実行のスケジューリング
 schedule.every(1).seconds.do(get_time)
