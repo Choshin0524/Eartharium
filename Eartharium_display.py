@@ -18,9 +18,9 @@ if __name__ == "__main__":
     lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
     mcp.output(3,1)
     lcd.begin(16,2)
-    lcd.cursor(3,0)
+    lcd.setCursor(3,0)
     lcd.message("Welcome to")
-    lcd.cursor(3,1)
+    lcd.setCursor(3,1)
     lcd.message("Earthrium")
     time.sleep(2)
     lcd.clear()
@@ -31,16 +31,16 @@ def get_weather_list():
 
 def get_time():
     global time_now
-    time_now = datetime.datetime.now().strftime("%H:%M")    
+    time_now = datetime.datetime.now().strftime("%H:%M")   
 
 def show_time():
-    lcd.cursor(0,0)
+    lcd.setCursor(0,0)
     lcd.message(time_now)
 
 def show_weather():
-    lcd.cursor(8,0)
+    lcd.setCursor(8,0)
     lcd.message(weather_list[2])
-    lcd.cursor(0,1)
+    lcd.setCursor(0,1)
     lcd.message(str(weather_list[0])+"  "+str(weather_list[1]))
 
 #定時実行のスケジューリング
