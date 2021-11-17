@@ -20,7 +20,7 @@ def get_weather_info():
     temp_regex = re.compile(r'\d+') #気温情報のみ取り出すため
     temp_today_high_match = temp_regex.search(tempele_today_high.text)
     temp_today_low_match = temp_regex.search(tempele_today_low.text)
-    weather_info_array = [temp_today_high_match.groups(),temp_today_low_match.groups(),weather_today.text]
+    weather_info_array = [temp_today_high_match.group(),temp_today_low_match.group(),weather_today.text]
     
     #終了
     print("天気情報取得OK.")
