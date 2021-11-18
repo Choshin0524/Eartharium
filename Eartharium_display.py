@@ -13,7 +13,12 @@ time_now = ""
 
 def get_weather_list():
     global weather_list
-    weather_list = get_weather.get_weather_info() #weather_list[0]:high temp [1]:low temp [2]:weather
+    try:
+        weather_list = get_weather.get_weather_info() #weather_list[0]:high temp [1]:low temp [2]:weather
+    except:
+        lcd.setCursor(0,0)
+        lcd.message("error")
+
 
 def get_time():
     global time_now
@@ -45,9 +50,9 @@ if __name__ == "__main__":
     lcd.message("Earthrium")
     time.sleep(2)
     lcd.clear()
-    lcd.setCursor(3,0)
+    lcd.setCursor(4,0)
     lcd.message("Getting")
-    lcd.setCursor(3,1)
+    lcd.setCursor(4,1)
     lcd.message("Weather")
     get_weather_list()
     lcd.clear()
