@@ -32,7 +32,7 @@ def show_time():
 def show_weather():
     lcd.setCursor(6, 0)
     lcd.message("TEMP:"+weather_list[0]+"'C")
-    lcd.setCursor(2, 1)
+    lcd.setCursor(1, 1)
     lcd.message(weather_list[1])
 
 def destroy():
