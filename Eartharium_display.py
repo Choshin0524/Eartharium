@@ -33,6 +33,7 @@ def show_weather():
     lcd.setCursor(6, 0)
     lcd.message("TEMP:"+weather_list[0]+"'C")
     lcd.setCursor(1, 1)
+    lcd.message(" "*15)
     lcd.message(weather_list[1])
 
 def destroy():
@@ -70,7 +71,6 @@ if __name__ == "__main__":
 # 定時実行のスケジューリング
 schedule.every(1).seconds.do(get_time)
 schedule.every(2).minutes.do(get_weather_list)
-schedule.every(2).seconds.do(destroy)
 
 def loop():
     while True:
