@@ -20,6 +20,8 @@ def get_weather_list():
     except:
         lcd.setCursor(0, 0)
         lcd.message("error")
+    lcd.setCursor(1, 1)
+    lcd.message(" "*15)
 
 def get_time():
     global time_now
@@ -33,7 +35,6 @@ def show_weather():
     lcd.setCursor(6, 0)
     lcd.message("TEMP:"+weather_list[0]+"'C")
     lcd.setCursor(1, 1)
-    lcd.message(" "*15)
     lcd.message(weather_list[1])
 
 def destroy():
