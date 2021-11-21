@@ -1,14 +1,19 @@
 from selenium import webdriver
 import re
+from selenium.webdriver.chrome.options import Options
+import time
+
 
 def get_weather_info():
+    option = Options()                          # オプションを用意
+    option.add_argument('--headless')
     CHROME_DRIVER = '/usr/lib/chromium-browser/chromedriver'
-    browser = webdriver.Chrome(CHROME_DRIVER)
+    browser = webdriver.Chrome(CHROME_DRIVER,options=option)
     
     #Yahoo Weather
     url_id = "https://weather.yahoo.co.jp/weather/jp/35/8120.html"
     browser.get(url_id)
-
+    time.sleep(5)
     #天気情報取得
     tempele_today_high = browser.find_element_by_class_name("high")
     tempele_today_low = browser.find_element_by_class_name("low")
