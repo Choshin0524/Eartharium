@@ -70,6 +70,7 @@ if __name__ == "__main__":
 # 定時実行のスケジューリング
 schedule.every(1).seconds.do(get_time)
 schedule.every(2).minutes.do(get_weather_list)
+schedule.every(2).seconds.do(destroy)
 
 def loop():
     while True:

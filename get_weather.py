@@ -1,8 +1,6 @@
 from selenium import webdriver
 import re
 from selenium.webdriver.chrome.options import Options
-import time
-import sys
 
 def get_weather_info():
     option = Options()                          # オプションを用意
@@ -13,7 +11,6 @@ def get_weather_info():
     #Weather.com
     url_id = "https://weather.com/weather/today/l/647e251db6b21b336371be6d2ed34197f13ea10334f06c720fed781c27c9c832"
     browser.get(url_id)
-    time.sleep(5)
 
     #天気情報取得
     tempele_now = browser.find_element_by_class_name("CurrentConditions--tempValue--3a50n")
