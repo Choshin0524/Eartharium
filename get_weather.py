@@ -14,8 +14,8 @@ def get_weather_info():
 
     #天気情報取得
     tempele_now = browser.find_element_by_class_name("CurrentConditions--tempValue--3a50n")
-    conditonele_now = browser.find_element_by_class_name("CurrentConditions--phraseValue--2Z18W")
-
+    conditionele_now = browser.find_element_by_class_name("CurrentConditions--phraseValue--2Z18W")
+    condition_now_value = conditionele_now.text
     #°記号を取り除く
     num_regex = re.compile(r'\d+')
     temp_deg_removed = num_regex.search(tempele_now.text)
@@ -30,9 +30,22 @@ def get_weather_info():
     #温度が２桁の場合，温度のまえにスペース１つを加える．
     if len(tempele_now_value) == 2:
         tempele_now_value = " " + tempele_now_value
-    
-    weather_info_array = [tempele_now_value,conditonele_now.text]
-
-    #終了
-    print("天気情報取得OK.")
-    return weather_info_array
+       
+    #天気状況の適正表示
+    condition_length = len(condition_now_value)
+    #一回で表示しきれる場合
+    if  condition_length <= 16:
+        string_move_value = int((16-condition_length)/2)
+        condition_now_value = " "*string_move_value + condition_now_value + " "*(16-condition_length-string_move_value)
+        weather_info_array = [tempele_now_value,condition_now_value]
+        print("天気情報取得OK.")
+        return weather_info_array
+    #一回で表示しきれない場合
+    if condition_length > 16:
+        string_move_value = int((32-condition_length)/2)
+        condition_now_value1 = condition_now_value[0:16]
+        condition_now_value2 = condition_now_value[16:]
+        condition_now_value2 =  " "*string_move_value + condition_now_value2 + " "*(32-condition_length-string_move_value)
+        weather_info_array = [tempele_now_value,condition_now_value1,condition_now_value2]
+        print("天気情報取得OK.")
+        return weather_info_array

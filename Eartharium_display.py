@@ -34,8 +34,16 @@ def show_time():
 def show_weather():
     lcd.setCursor(6, 0)
     lcd.message("TEMP:"+weather_list[0]+"'C")
-    lcd.setCursor(1, 1)
-    lcd.message(weather_list[1])
+    lcd.setCursor(0, 1)
+    #表示しきれないときはシフト
+    if len(weather_list) == 2:
+        lcd.message(weather_list[1])
+    if len(weather_list) == 3:
+        lcd.message(weather_list[1])
+        time.sleep(2)
+        lcd.message(" "*16) #下の列だけクリア
+        lcd.message(weather_list[2])
+        time.sleep(2)
 
 def destroy():
     lcd.clear()
