@@ -25,7 +25,7 @@ def get_weather_info():
     
     #温度が１桁の場合，温度のまえにスペース２つを加える．
     if len(tempele_now_value) == 1:
-        tempele_now_value = " 　" + tempele_now_value
+        tempele_now_value = "  " + tempele_now_value
     
     #温度が２桁の場合，温度のまえにスペース１つを加える．
     if len(tempele_now_value) == 2:
