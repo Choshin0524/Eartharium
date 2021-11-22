@@ -41,6 +41,7 @@ def show_weather():
     if len(weather_list) == 3:
         lcd.message(weather_list[1])
         time.sleep(2)
+        lcd.setCursor(0, 1)
         lcd.message(" "*16) #下の列だけクリア
         lcd.message(weather_list[2])
         time.sleep(2)
