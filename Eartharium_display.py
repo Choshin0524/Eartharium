@@ -1,17 +1,27 @@
 # このファイルは__main__ファイルとして実行される
 
-from PCF8574 import PCF8574_GPIO
-from Adafruit_LCD1602 import Adafruit_CharLCD
-import get_weather
+from lcd_module.PCF8574 import PCF8574_GPIO
+from lcd_module.Adafruit_LCD1602 import Adafruit_CharLCD
+from weather_module import get_weather
 import schedule
 import time
 import datetime
 import Net_test
+import DHTget
 
 # 初期化
 weather_list = []
 time_now = ""
 
+def get_DHTsensor_list():
+    global DHTsensor_list
+    try:
+        #DHTsensor_list [0] room humidity [1] room temp
+        DHTsensor_list = DHTget.get_DHTsensor_info()
+    except:
+        lcd.setCursor(0, 0)
+        lcd.message("error")
+            
 def get_weather_list():
     global weather_list
     try:
@@ -20,12 +30,19 @@ def get_weather_list():
     except:
         lcd.setCursor(0, 0)
         lcd.message("error")
+    #刷新
     lcd.setCursor(1, 1)
     lcd.message(" "*15)
 
 def get_time():
     global time_now
     time_now = datetime.datetime.now().strftime("%H:%M")
+
+def show_DHTsensor_value():
+    lcd.setCursor(0,0)
+    lcd.message("Room Humidity:" + DHTsensor_list[0])
+    lcd.setCursor(0,1)
+    lcd.message("Room Temp:" + DHTsensor_list[1])
 
 def show_time():
     lcd.setCursor(0, 0)
@@ -80,14 +97,22 @@ if __name__ == "__main__":
 
 # 定時実行のスケジューリング
 schedule.every(1).seconds.do(get_time)
+schedule.every(1).minutes.do(get_DHTsensor_list)
 schedule.every(2).minutes.do(get_weather_list)
 
 def loop():
     while True:
         schedule.run_pending()
+        #時間と天気情報表示
         show_time()
         show_weather()
-
+        time.sleep(2)
+        lcd.clear()
+        #センサー情報表示
+        show_DHTsensor_value()
+        time.sleep(2)
+        lcd.clear()
+        
 if __name__ == "__main__":
     print('Earthrium is starting ... ')
     try:
