@@ -11,6 +11,7 @@ import DHTget
 
 # 初期化
 weather_list = []
+DHTsensor_list = []
 time_now = ""
 
 def get_DHTsensor_list():
@@ -93,11 +94,12 @@ if __name__ == "__main__":
     lcd.setCursor(4, 1)
     lcd.message("Weather")
     get_weather_list()
+    get_DHTsensor_list()
     lcd.clear()
 
 # 定時実行のスケジューリング
 schedule.every(1).seconds.do(get_time)
-schedule.every(1).minutes.do(get_DHTsensor_list)
+schedule.every(4).seconds.do(get_DHTsensor_list)
 schedule.every(2).minutes.do(get_weather_list)
 
 def loop():
