@@ -15,7 +15,7 @@ def get_DHTsensor_info():
         time.sleep(0.1)
 
     #計測結果文字列に変換しを配列に格納
-    humidity, temperature = str(dht.humidity),str(dht.temperature)
+    humidity, temperature = str(int(dht.humidity)),str(int(dht.temperature))
     if len(humidity) == 1:
         humidity = " " + humidity
     if len(temperature) == 1:

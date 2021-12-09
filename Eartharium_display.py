@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 # 定時実行のスケジューリング
 schedule.every(1).seconds.do(get_time)
-schedule.every(4).seconds.do(get_DHTsensor_list)
+schedule.every(2).seconds.do(get_DHTsensor_list)
 schedule.every(2).minutes.do(get_weather_list)
 
 def loop():
@@ -108,11 +108,11 @@ def loop():
         #時間と天気情報表示
         show_time()
         show_weather()
-        time.sleep(2)
+        time.sleep(5)
         lcd.clear()
         #センサー情報表示
         show_DHTsensor_value()
-        time.sleep(2)
+        time.sleep(5)
         lcd.clear()
         
 if __name__ == "__main__":
