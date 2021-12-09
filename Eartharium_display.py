@@ -93,6 +93,7 @@ if __name__ == "__main__":
     lcd.message("Loading")
     lcd.setCursor(4, 1)
     lcd.message("Weather")
+    get_time()
     get_weather_list()
     get_DHTsensor_list()
     lcd.clear()
