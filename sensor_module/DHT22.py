@@ -89,7 +89,7 @@ class DHT(object):
 			self.humidity = self.DHTLIB_INVALID_VALUE
 			self.temperature = self.DHTLIB_INVALID_VALUE
 			return rv
-		self.humidity = self.bits[0]
+		self.humidity = self.bits[1] #0 -> 1
 		self.temperature = self.bits[2] + self.bits[3]*0.1
 		sumChk = ((self.bits[0] + self.bits[1] + self.bits[2] + self.bits[3]) & 0xFF)
 		if(self.bits[4] is not sumChk):
