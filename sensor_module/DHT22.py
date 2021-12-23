@@ -116,7 +116,7 @@ def loop():
 			okCnt += 1		
 		okRate = 100.0*okCnt/sumCnt;
 		print("sumCnt : %d, \t okRate : %.2f%% "%(sumCnt,okRate))
-		print("chk : %d, \t Humidity : %.2f, \t Temperature : %.2f "%(chk,dht.humidity,dht.temperature))
+		print("chk : %d, \t Humidity : %d, \t Temperature : %.2f "%(chk,dht.humidity,dht.temperature))
 		time.sleep(3)		
 		
 if __name__ == '__main__':
