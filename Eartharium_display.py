@@ -41,9 +41,9 @@ def get_time():
 
 def show_DHTsensor_value():
     lcd.setCursor(0,0)
-    lcd.message("Room Humidity:" + DHTsensor_list[0])
+    lcd.message("Humidity:" + DHTsensor_list[0])
     lcd.setCursor(0,1)
-    lcd.message("Room Temp:" + DHTsensor_list[1])
+    lcd.message("Temp:" + DHTsensor_list[1])
 
 def show_time():
     lcd.setCursor(0, 0)
